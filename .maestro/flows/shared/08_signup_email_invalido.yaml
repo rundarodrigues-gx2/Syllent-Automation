@@ -1,0 +1,19 @@
+# Cadastro negativo: e-mail malformado não deve liberar o envio do código.
+appId: ${APP_ID}
+tags:
+  - regression
+  - signup
+  - negativo
+---
+- runFlow: ../../subflows/launch_app.yaml
+- runFlow: ../../subflows/goto_login.yaml
+- runFlow: ../../subflows/goto_signup.yaml
+- tapOn: "example@gmail.com"
+- inputText: "email-invalido"
+- hideKeyboard
+- tapOn: "Send code"
+- waitForAnimationToEnd:
+    timeout: 4000
+# Permanece no cadastro: não avançou para a etapa do código
+- assertVisible: "Create your account"
+- takeScreenshot: "08_signup_email_invalido"

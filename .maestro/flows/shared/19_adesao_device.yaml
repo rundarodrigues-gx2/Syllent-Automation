@@ -1,0 +1,23 @@
+# [autenticado] Adesão de DEVICE: abre o fluxo de pareamento "Add Device".
+# O pareamento real exige um dispositivo físico (BLE/Wi-Fi/Zigbee); aqui
+# validamos a tela de catálogo e categorias.
+appId: ${APP_ID}
+tags:
+  - autenticado
+  - adesao
+  - regression
+---
+- runFlow: ../../subflows/open_app_logged.yaml
+- tapOn: "Home"
+- tapOn: "Add"
+- tapOn: "New device"
+- extendedWaitUntil:
+    visible: "Add Device"
+    timeout: 15000
+# O catálogo carrega de forma assíncrona
+- extendedWaitUntil:
+    visible: "Add Manually"
+    timeout: 15000
+- assertVisible: "Lighting"
+- assertVisible: "Sensors"
+- takeScreenshot: "19_add_device"

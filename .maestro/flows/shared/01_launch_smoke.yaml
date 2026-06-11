@@ -1,0 +1,8 @@
+# Smoke: abre o app, dispensa diálogos e chega na tela de Login.
+appId: ${APP_ID}
+tags:
+  - smoke
+---
+- runFlow: ../../subflows/launch_app.yaml
+- assertVisible: "Sign in to your account"
+- takeScreenshot: "01_login_inicial"

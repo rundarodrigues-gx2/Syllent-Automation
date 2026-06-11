@@ -1,0 +1,15 @@
+# [autenticado] Navega pelas abas inferiores: Account, Devices, Dashboard, Home.
+appId: ${APP_ID}
+tags:
+  - autenticado
+  - navegacao
+---
+- runFlow: ../../subflows/open_app_logged.yaml
+- tapOn: "Account"
+- assertVisible: "Sign out"
+- tapOn: "Devices"
+- assertVisible: "AUTOMATIONS"
+- tapOn: "Dashboard"
+- tapOn: "Home"
+- assertVisible: "Dashboard"
+- takeScreenshot: "13_tabs"

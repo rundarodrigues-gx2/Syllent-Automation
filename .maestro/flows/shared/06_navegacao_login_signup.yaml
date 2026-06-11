@@ -1,0 +1,14 @@
+# Navegação entre Login e Sign Up (ida e volta).
+appId: ${APP_ID}
+tags:
+  - regression
+  - navegacao
+---
+- runFlow: ../../subflows/launch_app.yaml
+- runFlow: ../../subflows/goto_login.yaml
+- runFlow: ../../subflows/goto_signup.yaml
+- assertVisible: "Create your account"
+# Volta para o Login pelo link "Log in"
+- tapOn: "Log in"
+- assertVisible: "Sign in to your account"
+- takeScreenshot: "06_navegacao_ok"

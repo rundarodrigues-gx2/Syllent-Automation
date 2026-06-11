@@ -1,0 +1,21 @@
+# [autenticado][escrita] Adesão de HOME: cria uma nova casa.
+# ATENÇÃO: cria dados reais na conta (uma home "QA Maestro Home" por execução).
+appId: ${APP_ID}
+tags:
+  - autenticado
+  - adesao
+  - escrita
+---
+- runFlow: ../../subflows/open_app_logged.yaml
+- tapOn: "Home"
+# Botão "+" (accessibility label "Add") no topo da Home
+- tapOn: "Add"
+- tapOn: "New home"
+- assertVisible: "ADD NEW HOME"
+- tapOn: "Beach house, downtown apartment"
+- inputText: "QA Maestro Home"
+- hideKeyboard
+- tapOn: "Save"
+- assertVisible: "Home added!"
+- tapOn: "Continue without adding"
+- takeScreenshot: "17_home_criada"

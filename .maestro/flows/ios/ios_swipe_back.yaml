@@ -1,0 +1,16 @@
+# iOS: gesto de "swipe back" (arrastar da borda esquerda) volta ao Login.
+# NOTA: só executa em macOS com simulador iOS. Mantido como referência.
+appId: ${APP_ID}
+tags:
+  - ios
+  - regression
+---
+- runFlow: ../../subflows/launch_app.yaml
+- runFlow: ../../subflows/goto_login.yaml
+- tapOn: "Forgot your password?"
+- assertVisible: "Recover password"
+# Gesto nativo de voltar do iOS
+- swipe:
+    start: 0%, 50%
+    end: 80%, 50%
+- assertVisible: "Sign in to your account"

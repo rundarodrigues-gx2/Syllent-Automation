@@ -1,0 +1,19 @@
+# [autenticado][escrita] Adesão de ROOM: cria um cômodo na home atual.
+# ATENÇÃO: cria dados reais na conta (uma room "QA Maestro Room" por execução).
+appId: ${APP_ID}
+tags:
+  - autenticado
+  - adesao
+  - escrita
+---
+- runFlow: ../../subflows/open_app_logged.yaml
+- tapOn: "Home"
+- tapOn: "Add"
+- tapOn: "New room"
+- assertVisible: "ADD ROOM"
+- tapOn: "Example: Living room, lounge..."
+- inputText: "QA Maestro Room"
+- hideKeyboard
+- tapOn: "Save"
+- assertVisible: "Room(s)"
+- takeScreenshot: "18_room_criada"

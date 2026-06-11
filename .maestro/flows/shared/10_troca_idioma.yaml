@@ -1,0 +1,31 @@
+# Internacionalização (LOGIN): valida os 4 idiomas pelo seletor de bandeiras.
+# As bandeiras expõem accessibility labels fixas (Português, English, Español,
+# Français) — não mudam com o idioma —, então é seguro ciclar entre elas.
+appId: ${APP_ID}
+tags:
+  - regression
+  - i18n
+---
+- runFlow: ../../subflows/launch_app.yaml
+- runFlow: ../../subflows/goto_login.yaml
+- assertVisible: "Sign in to your account"
+# Português
+- tapOn: "Português"
+- assertVisible: "Entre na sua conta"
+- assertVisible: "Esqueceu sua senha?"
+- assertVisible: "Cadastre-se"
+- takeScreenshot: "10_login_pt"
+# Español
+- tapOn: "Español"
+- assertVisible: "Inicia sesión en tu cuenta"
+- assertVisible: "¿Olvidaste tu contraseña?"
+- takeScreenshot: "10_login_es"
+# Français
+- tapOn: "Français"
+- assertVisible: "Connectez-vous à votre compte"
+- assertVisible: "Mot de passe oublié ?"
+- takeScreenshot: "10_login_fr"
+# English (volta ao padrão)
+- tapOn: "English"
+- assertVisible: "Sign in to your account"
+- assertVisible: "Forgot your password?"

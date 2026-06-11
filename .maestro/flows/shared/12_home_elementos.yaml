@@ -1,0 +1,14 @@
+# [autenticado] Verifica elementos da Home e da barra de navegação inferior.
+# Requer sessão já logada (ver README › Flows autenticados).
+appId: ${APP_ID}
+tags:
+  - autenticado
+  - smoke
+---
+- runFlow: ../../subflows/open_app_logged.yaml
+# Shell autenticado: barra de navegação inferior (independe da home ativa)
+- assertVisible: "Home"
+- assertVisible: "Dashboard"
+- assertVisible: "Devices"
+- assertVisible: "Account"
+- takeScreenshot: "12_home"

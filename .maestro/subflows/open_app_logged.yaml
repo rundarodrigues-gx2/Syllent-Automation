@@ -1,0 +1,18 @@
+# Subflow: abre o app SEM limpar estado, preservando a sessão autenticada.
+# Pré-requisito: já existe uma sessão logada e o dispositivo já foi autorizado
+# (o 2FA por e-mail do "Device authorization" não roda de forma headless).
+# Usado pelos flows com a tag 'autenticado'.
+appId: ${APP_ID}
+---
+- launchApp:
+    appId: ${APP_ID}
+    clearState: false
+# Dispensa os diálogos que reaparecem em cold start (compat 16KB, bateria, aviso)
+- runFlow: dismiss_dialogs.yaml
+# Convite de biometria, se aparecer
+- tapOn:
+    text: "Enable later"
+    optional: true
+# Bottom nav presente => estamos na área autenticada
+- assertVisible:
+    text: "Account"

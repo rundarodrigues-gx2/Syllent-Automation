@@ -1,0 +1,31 @@
+# Subflow: login com e-mail/senha (requer credenciais reais em .env).
+#
+# IMPORTANTE — autorização de dispositivo (2FA):
+# Após "Sign in", o app envia um código de 6 dígitos por e-mail
+# ("Device authorization"). Esse passo NÃO roda de forma headless.
+# Para automação contínua, autorize o dispositivo uma vez manualmente e use
+# os flows com a tag 'autenticado' (que abrem o app SEM clearState,
+# preservando a sessão). Veja README › Flows autenticados.
+#
+# O campo de senha é o 2º elemento "Password" da tela (index: 1);
+# o 1º é o rótulo. Selecionar pelo índice evita digitar a senha no e-mail.
+appId: ${APP_ID}
+---
+- runFlow: goto_login.yaml
+- tapOn: "example@gmail.com"
+- inputText: ${LOGIN_USERNAME}
+- hideKeyboard
+- tapOn:
+    text: "Password"
+    index: 1
+- inputText: ${LOGIN_PASSWORD}
+- hideKeyboard
+- tapOn: "Sign in"
+# A partir daqui, conclua o "Device authorization" (código por e-mail).
+# Dispensa o convite de biometria, se aparecer.
+- tapOn:
+    text: "Enable later"
+    optional: true
+- extendedWaitUntil:
+    visible: "Account"
+    timeout: 30000

@@ -1,0 +1,12 @@
+# Android: botão físico "voltar" retorna da tela de recuperação para o Login.
+appId: ${APP_ID}
+tags:
+  - android
+  - regression
+---
+- runFlow: ../../subflows/launch_app.yaml
+- runFlow: ../../subflows/goto_login.yaml
+- tapOn: "Forgot your password?"
+- assertVisible: "Recover password"
+- pressKey: Back
+- assertVisible: "Sign in to your account"

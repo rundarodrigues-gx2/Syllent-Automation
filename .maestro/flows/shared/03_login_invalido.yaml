@@ -1,0 +1,24 @@
+# Login negativo: credenciais inválidas não devem autenticar.
+appId: ${APP_ID}
+tags:
+  - regression
+  - login
+  - negativo
+---
+- runFlow: ../../subflows/launch_app.yaml
+- runFlow: ../../subflows/goto_login.yaml
+- tapOn: "example@gmail.com"
+- inputText: "invalido@syllent.com"
+- hideKeyboard
+# Campo de senha: fica à esquerda do botão "Show password"
+- tapOn:
+    leftOf:
+      text: "Show password"
+- inputText: "senhaErrada123"
+- hideKeyboard
+- tapOn: "Sign in"
+- waitForAnimationToEnd:
+    timeout: 5000
+# Permanece na tela de Login (não autenticou)
+- assertVisible: "Sign in to your account"
+- takeScreenshot: "03_login_invalido"

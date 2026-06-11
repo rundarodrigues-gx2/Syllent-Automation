@@ -1,0 +1,16 @@
+# Recuperação de senha: acessa a tela "Recover password" a partir do Login.
+appId: ${APP_ID}
+tags:
+  - regression
+  - login
+---
+- runFlow: ../../subflows/launch_app.yaml
+- runFlow: ../../subflows/goto_login.yaml
+- tapOn: "Forgot your password?"
+- assertVisible: "Recover password"
+- assertVisible: "Enter your registered email to receive the recovery code."
+- tapOn: "example@gmail.com"
+- inputText: "recuperar@syllent.com"
+- hideKeyboard
+- assertVisible: "Send code"
+- takeScreenshot: "09_recuperar_senha"

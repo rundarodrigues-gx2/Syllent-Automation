@@ -1,0 +1,17 @@
+# Configuração do workspace Maestro
+# Docs: https://docs.maestro.dev/cli/configuration
+
+flows:
+  - "flows/**"
+
+# Tags executadas/ignoradas por padrão (sobrescreva via CLI com --include-tags / --exclude-tags)
+includeTags: []
+excludeTags:
+  - wip          # fluxos em desenvolvimento
+  - manual       # fluxos que exigem passos manuais
+  - autenticado  # exigem sessão logada (2FA) — rode com --include-tags autenticado
+  - ios          # só executam em macOS
+
+# Configurações de execução
+executionOrder:
+  continueOnFailure: false

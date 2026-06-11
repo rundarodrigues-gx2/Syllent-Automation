@@ -1,0 +1,18 @@
+# Verifica os elementos da tela de cadastro (Sign Up).
+appId: ${APP_ID}
+tags:
+  - smoke
+  - signup
+---
+- runFlow: ../../subflows/launch_app.yaml
+- runFlow: ../../subflows/goto_login.yaml
+- runFlow: ../../subflows/goto_signup.yaml
+- assertVisible: "Create your account"
+- assertVisible: "First, verify your email. Then complete your details."
+- assertVisible: "Enter your email"
+- assertVisible: "Send code"
+- assertVisible: "Enter the 6-digit code"
+- assertVisible: "Personal details"
+- assertVisible: "Already have an account?"
+- assertVisible: "Log in"
+- takeScreenshot: "07_signup"

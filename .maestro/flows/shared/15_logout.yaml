@@ -1,0 +1,20 @@
+# [autenticado] Logout: encerra a sessão pela aba "Account" > "Sign out".
+# ATENÇÃO: ao rodar, ENCERRA a sessão — um novo login exigirá o 2FA por e-mail.
+# Por isso roda isolado (tag 'logout') e por último.
+appId: ${APP_ID}
+tags:
+  - autenticado
+  - logout
+---
+- runFlow: ../../subflows/open_app_logged.yaml
+- tapOn: "Account"
+- assertVisible: "Sign out"
+- tapOn: "Sign out"
+# Confirmação, se houver
+- tapOn:
+    text: "Sign out|Confirm|Yes|OK"
+    optional: true
+- extendedWaitUntil:
+    visible: "Sign in to your account"
+    timeout: 15000
+- takeScreenshot: "15_apos_logout"

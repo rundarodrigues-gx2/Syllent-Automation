@@ -1,0 +1,12 @@
+# Login autenticado (WIP — excluído por padrão).
+# Requer credenciais reais em .env (LOGIN_USERNAME / LOGIN_PASSWORD) e
+# ajuste do assert de "home" no subflow login.yaml.
+appId: ${APP_ID}
+tags:
+  - wip
+  - login
+  - autenticado
+---
+- runFlow: ../../subflows/launch_app.yaml
+- runFlow: ../../subflows/login.yaml
+- takeScreenshot: "11_home_autenticada"

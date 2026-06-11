@@ -1,0 +1,18 @@
+# [autenticado] Aba "Devices": automações e cenas (Scenes / Automation / Tap-to-Run).
+appId: ${APP_ID}
+tags:
+  - autenticado
+  - automacoes
+  - regression
+---
+- runFlow: ../../subflows/open_app_logged.yaml
+- tapOn: "Devices"
+- assertVisible: "AUTOMATIONS"
+- assertVisible: "Scenes"
+- assertVisible: "Automation"
+- assertVisible: "Tap-to-Run"
+- takeScreenshot: "16_cenas"
+# Aba Automation (estado vazio para um cômodo sem automações)
+- tapOn: "Automation"
+- assertVisible: "No item created"
+- takeScreenshot: "16_automation"

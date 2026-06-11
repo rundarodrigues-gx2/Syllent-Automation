@@ -1,0 +1,16 @@
+# Verifica a presença dos elementos principais da tela de Login.
+appId: ${APP_ID}
+tags:
+  - smoke
+  - login
+---
+- runFlow: ../../subflows/launch_app.yaml
+- runFlow: ../../subflows/goto_login.yaml
+- assertVisible: "Sign in to your account"
+- assertVisible: "Email"
+- assertVisible: "Password"
+- assertVisible: "Remember email"
+- assertVisible: "Forgot your password?"
+- assertVisible: "Sign in"
+- assertVisible: "Don't have an account?"
+- assertVisible: "Sign up"

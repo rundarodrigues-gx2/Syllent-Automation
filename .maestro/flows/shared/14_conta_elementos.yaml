@@ -1,0 +1,15 @@
+# [autenticado] Verifica os itens da aba "Account" (perfil/configurações).
+appId: ${APP_ID}
+tags:
+  - autenticado
+  - regression
+---
+- runFlow: ../../subflows/open_app_logged.yaml
+- tapOn: "Account"
+- assertVisible: "Personal details"
+- assertVisible: "App settings"
+- assertVisible: "Help center"
+- assertVisible: "Terms of Use"
+- assertVisible: "Sign out"
+- assertVisible: "runda.rodrigues@gx2.com.br"
+- takeScreenshot: "14_account"

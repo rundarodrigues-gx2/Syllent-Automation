@@ -1,0 +1,16 @@
+# Subflow: dispensa os diálogos de primeiro launch do Connect Syllent (app Tuya).
+# No primeiro start aparecem, em sequência (ordem/presença variam):
+#   1. "Android App Compatibility" (libs não alinhadas a 16KB) -> OK / Don't Show Again
+#   2. "Let app always run in background?" (otimização de bateria) -> Deny / Allow
+#   3. "This application is for testing only..." (aviso do app Tuya) -> OK
+# Todos são opcionais: o loop toca em qualquer botão de dispensa presente.
+appId: ${APP_ID}
+---
+- repeat:
+    times: 4
+    commands:
+      - tapOn:
+          text: "Don't Show Again|Allow|OK"
+          optional: true
+      - waitForAnimationToEnd:
+          timeout: 1500

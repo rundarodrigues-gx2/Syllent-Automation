@@ -1,0 +1,26 @@
+# Maestro
+.maestro/tests/          # saídas de execução local (legado)
+*.maestro.log
+maestro-*.log
+
+# Artefatos de execução (screenshots, vídeos, relatórios)
+screenshots/
+recordings/
+*.mp4
+*.png
+report.xml
+report.html
+
+# Segredos / credenciais reais (use os .env de exemplo como template)
+.maestro/env/*.local.env
+.env
+.env.local
+
+# Sistema
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/
+*.iml

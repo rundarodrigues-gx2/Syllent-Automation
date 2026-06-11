@@ -1,0 +1,18 @@
+# Interage com a opção "Remember email".
+# OBS.: a persistência real do e-mail só ocorre APÓS um login bem-sucedido
+# (que exige o 2FA por e-mail). Verificado: sem login, o e-mail não é
+# restaurado ao reabrir. Por isso aqui validamos apenas a interação com o
+# controle; a persistência fica como verificação manual (flows autenticados).
+appId: ${APP_ID}
+tags:
+  - regression
+  - login
+---
+- runFlow: ../../subflows/launch_app.yaml
+- runFlow: ../../subflows/goto_login.yaml
+- tapOn: "example@gmail.com"
+- inputText: "lembrar@syllent.com"
+- hideKeyboard
+- tapOn: "Remember email"
+- takeScreenshot: "05_remember_email"
+- assertVisible: "Sign in"

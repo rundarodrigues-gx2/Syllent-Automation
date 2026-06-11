@@ -1,0 +1,22 @@
+# Alterna a visibilidade da senha pelo ícone "Show password".
+# OBS.: apps React Native não expõem a senha em texto claro ao automation
+# (o uiautomator sempre reporta a máscara "••••"), portanto validamos a
+# interação com o toggle e registramos evidência visual via screenshot.
+appId: ${APP_ID}
+tags:
+  - regression
+  - login
+---
+- runFlow: ../../subflows/launch_app.yaml
+- runFlow: ../../subflows/goto_login.yaml
+# Campo de senha = 2ª ocorrência de "Password" (a 1ª é o rótulo).
+- tapOn:
+    text: "Password"
+    index: 1
+- inputText: "MinhaSenha123"
+- hideKeyboard
+- assertVisible: "Show password"
+- tapOn: "Show password"
+- takeScreenshot: "04_toggle_senha"
+# Permanece na tela de Login, sem quebrar
+- assertVisible: "Sign in"

@@ -1,0 +1,5 @@
+# Subflow: navega da tela de Login para a de cadastro (Sign Up).
+appId: ${APP_ID}
+---
+- tapOn: "Sign up"
+- assertVisible: "Create your account"

@@ -1,0 +1,10 @@
+# Subflow: inicia o app limpo, concede permissões e dispensa os diálogos iniciais.
+# Após este subflow o app fica na tela de Login ("Sign in to your account").
+appId: ${APP_ID}
+---
+- launchApp:
+    appId: ${APP_ID}
+    clearState: true
+    permissions:
+      all: allow
+- runFlow: dismiss_dialogs.yaml

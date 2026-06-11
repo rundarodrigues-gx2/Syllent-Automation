@@ -1,0 +1,91 @@
+# [autenticado][i18n] Valida que o APP INTEIRO muda de idioma nos 4 idiomas.
+# Para cada idioma confere: PERFIL (Account), HOME, AUTOMAÇÕES, CENAS e AMBIENTES
+# (aba Devices). Troca em Account › App settings › App language.
+#
+# Notas:
+# - Navegação inferior ("Account"/"Home"/"Devices") NÃO traduz — bons âncoras.
+# - Itens de tela TRADUZEM → "App settings" é selecionado por regex multilíngue.
+# - As bandeiras em App settings não têm accessibility label → tocadas por
+#   coordenada em pixel (point x,y). Layout de referência: 1080x2400
+#   (linha das bandeiras y=856 ; BR x=96 · US x=226 · ES x=356 · FR x=486).
+# - Nomes de cenas/cômodos definidos pelo usuário (ex.: "Piscina apartamento")
+#   NÃO traduzem — por isso só asseguramos rótulos do sistema.
+appId: ${APP_ID}
+tags:
+  - autenticado
+  - i18n
+  - regression
+---
+- runFlow: ../../subflows/open_app_logged.yaml
+
+# ---------- Português ----------
+- tapOn: "Account"
+- tapOn:
+    text: "App settings|Configurações do App|Configuración de la app|Paramètres de l'app"
+- tapOn:
+    point: 96,856
+- back
+- assertVisible: "Sair da conta"            # perfil
+- assertVisible: "Dados pessoais"
+- tapOn: "Home"
+- assertVisible: "Editar"                    # home
+- tapOn: "Devices"
+- assertVisible: "AUTOMAÇÕES"                 # automações (cabeçalho)
+- assertVisible: "Cenas"                      # cenas
+- assertVisible: "Automação"                  # automações (aba)
+- assertVisible: "Selecione um ambiente"      # ambientes
+- takeScreenshot: "20_app_pt"
+
+# ---------- Español ----------
+- tapOn: "Account"
+- tapOn:
+    text: "App settings|Configurações do App|Configuración de la app|Paramètres de l'app"
+- tapOn:
+    point: 356,856
+- back
+- assertVisible: "Cerrar sesión"
+- assertVisible: "Datos personales"
+- tapOn: "Home"
+- assertVisible: "Editar"
+- tapOn: "Devices"
+- assertVisible: "AUTOMATIZACIONES"
+- assertVisible: "Escenas"
+- assertVisible: "Automatización"
+- assertVisible: "Selecciona un ambiente"
+- takeScreenshot: "20_app_es"
+
+# ---------- Français ----------
+- tapOn: "Account"
+- tapOn:
+    text: "App settings|Configurações do App|Configuración de la app|Paramètres de l'app"
+- tapOn:
+    point: 486,856
+- back
+- assertVisible: "Se déconnecter"
+- assertVisible: "Informations personnelles"
+- tapOn: "Home"
+- assertVisible: "Modifier"
+- tapOn: "Devices"
+- assertVisible: "AUTOMATISATIONS"
+- assertVisible: "Scènes"
+- assertVisible: "Automatisation"
+- assertVisible: "Sélectionner une pièce"
+- takeScreenshot: "20_app_fr"
+
+# ---------- English (restaura o padrão) ----------
+- tapOn: "Account"
+- tapOn:
+    text: "App settings|Configurações do App|Configuración de la app|Paramètres de l'app"
+- tapOn:
+    point: 226,856
+- back
+- assertVisible: "Sign out"
+- assertVisible: "Personal details"
+- tapOn: "Home"
+- assertVisible: "Edit"
+- tapOn: "Devices"
+- assertVisible: "AUTOMATIONS"
+- assertVisible: "Scenes"
+- assertVisible: "Automation"
+- assertVisible: "Select a room"
+- takeScreenshot: "20_app_en"
