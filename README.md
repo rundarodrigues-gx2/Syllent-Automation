@@ -89,7 +89,11 @@ maestro --version   # esperado: 2.6.0+
 │   │   ├── 17_adesao_home.yaml           # [autenticado][escrita] criar home
 │   │   ├── 18_adesao_room.yaml           # [autenticado][escrita] criar room
 │   │   ├── 19_adesao_device.yaml         # [autenticado] tela Add Device
-│   │   └── 20_idioma_app.yaml            # [autenticado] i18n: perfil/home/automações/cenas/ambientes (4 idiomas)
+│   │   ├── 20_idioma_app.yaml            # [autenticado] i18n: perfil/home/automações/cenas/ambientes (4 idiomas)
+│   │   ├── 21_add_data_home.yaml         # [autenticado] "+ Add data" no dashboard
+│   │   ├── 22_editar_dashboard.yaml      # [autenticado] editar widgets do dashboard
+│   │   ├── 23_editar_foto_perfil.yaml    # [autenticado] foto de perfil (Personal details)
+│   │   └── 24_adesao_room_porta.yaml     # [autenticado][escrita] criar room pela tela de cômodos (ícone porta)
 │   ├── android/
 │   │   └── android_voltar.yaml      # botão físico voltar
 │   └── ios/
@@ -178,6 +182,8 @@ código de 6 dígitos). Esse passo **não roda headless**. Fluxo de uso:
 | `negativo`    | Casos de erro / validação negativa                   |
 | `i18n`        | Troca de idioma                                      |
 | `automacoes`  | Cenas / automações (aba Devices)                     |
+| `dashboard`   | Dashboard da Home (Add data, editar widgets)         |
+| `perfil`      | Dados pessoais / foto de perfil                      |
 | `adesao`      | Adicionar home / room / device                       |
 | `escrita`     | **Criam dados reais** na conta (ver aviso abaixo)    |
 | `autenticado` | Exigem sessão logada — excluídos por padrão          |

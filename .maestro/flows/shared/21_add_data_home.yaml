@@ -1,0 +1,16 @@
+# [autenticado] "Add data" na Home/Dashboard: abre o seletor de dispositivo
+# para adicionar dados de um device a um cômodo.
+# Sem device pareado, mostra o estado vazio ("No device paired in this pool.").
+appId: ${APP_ID}
+tags:
+  - autenticado
+  - dashboard
+  - regression
+---
+- runFlow: ../../subflows/open_app_logged.yaml
+- tapOn: "Home"
+- assertVisible: "+ Add data"
+- tapOn: "+ Add data"
+- assertVisible: "Select device"
+- assertVisible: "No device paired in this pool."
+- takeScreenshot: "21_add_data"

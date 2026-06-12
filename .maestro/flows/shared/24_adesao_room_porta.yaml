@@ -1,0 +1,27 @@
+# [autenticado][escrita] Adesão de ROOM pela TELA DE CÔMODOS (ícone de porta).
+# O ícone de porta é o 2º item da barra inferior e abre a tela "Room(s)",
+# que lista os cômodos e tem o botão próprio "Add room".
+# Tocado por pixel (a label de acessibilidade "Dashboard" colide com o título
+# de outra tela). Layout de referência: 1080x2400 (ícone porta ≈ x=320, y=2242).
+# ATENÇÃO: cria dado real na conta (uma room "Sala Porta" por execução).
+appId: ${APP_ID}
+tags:
+  - autenticado
+  - adesao
+  - escrita
+---
+- runFlow: ../../subflows/open_app_logged.yaml
+# Ícone de porta → tela de cômodos/ambientes
+- tapOn:
+    point: 320,2242
+- assertVisible: "Room(s)"
+# Botão "Add room" da própria tela de rooms
+- tapOn: "Add room"
+- assertVisible: "ADD ROOM"
+- tapOn: "Example: Living room, lounge..."
+- inputText: "Sala Porta"
+- hideKeyboard
+- tapOn: "Save"
+# Volta para a lista de cômodos
+- assertVisible: "Room(s)"
+- takeScreenshot: "24_room_porta"

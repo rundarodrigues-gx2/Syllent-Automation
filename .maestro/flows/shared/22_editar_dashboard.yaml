@@ -1,0 +1,19 @@
+# [autenticado] Editar Dashboard: entra no modo de edição de widgets da Home.
+# Modo edição: botão "Edit" vira "Save"; aparecem "Visible on Home" e as
+# ações "Reorder widget"/"Hide widget" (content-desc).
+appId: ${APP_ID}
+tags:
+  - autenticado
+  - dashboard
+  - regression
+---
+- runFlow: ../../subflows/open_app_logged.yaml
+- tapOn: "Home"
+- assertVisible: "Edit"
+- tapOn: "Edit"
+- assertVisible: "Save"
+- assertVisible: "Visible on Home"
+- takeScreenshot: "22_dashboard_edicao"
+# Sai do modo edição
+- tapOn: "Save"
+- assertVisible: "Edit"

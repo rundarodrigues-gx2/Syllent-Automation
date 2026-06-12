@@ -1,0 +1,20 @@
+# [autenticado] Editar foto de perfil do usuário.
+# Account › Personal details › Edit photo → opções de origem da foto.
+# (Concluir a troca abre o seletor nativo do SO — fora do escopo do app;
+#  aqui validamos as opções apresentadas.)
+appId: ${APP_ID}
+tags:
+  - autenticado
+  - perfil
+  - regression
+---
+- runFlow: ../../subflows/open_app_logged.yaml
+- tapOn: "Account"
+- tapOn: "Personal details"
+- assertVisible: "PERSONAL DETAILS"
+- assertVisible: "Edit photo"
+- tapOn: "Edit photo"
+- assertVisible: "Take photo"
+- assertVisible: "Choose from gallery"
+- assertVisible: "Remove current photo"
+- takeScreenshot: "23_foto_perfil"
