@@ -4,6 +4,8 @@
 maestro-*.log
 
 # Artefatos de execução (screenshots, vídeos, relatórios)
+# pasta resetada a cada run (--debug-output)
+artifacts/
 screenshots/
 recordings/
 *.mp4
